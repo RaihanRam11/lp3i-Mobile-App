@@ -1,5 +1,5 @@
-import { MyButton } from "./my_button";
+import {MyButton} from "./my_button"
 
 export{
-    MyButton
+  MyButton
 }

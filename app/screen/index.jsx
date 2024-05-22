@@ -1,7 +1,7 @@
-import HomeScreen from "./home"
+import HomeScreen from "./home/index.jsx"
 import LoginScreen from "./login"
 
-export {
+export{
     HomeScreen,
     LoginScreen
 }
