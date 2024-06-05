@@ -1,19 +1,16 @@
 import { 
     Image,
-    Touchable,
-    Dimensions,
+    TouchableOpacity,
     Text,
-    StyleSheet }
-from "react-native"
-import { TouchableOpacity } from "react-native-gesture-handler"
-const windowWidth = Dimensions.get('window').width;
+    StyleSheet
+} from 'react-native'
+
 export const MyButton=(props)=>{
     return(
-        <TouchableOpacity style = {[styles.container, props.style]}>
-            <Image
+        <TouchableOpacity style={[styles.container, props.style]}>
+            <Image 
                 style={styles.iconStyle}
-                source={props.imgUrl}
-            />
+                source={props.imgUrl} />
             <Text>{props.text}</Text>
         </TouchableOpacity>
     )
@@ -22,16 +19,15 @@ export const MyButton=(props)=>{
 const styles = StyleSheet.create({
     container:{
         padding:10,
-        width: windowWidth  * 0.43,
         borderColor:'#e1e6ed',
         backgroundColor:'#d8e2f2',
         borderWidth:0.5,
         borderRadius:5,
+        flex:1,
         flexDirection:'row',
         justifyContent:'center'
     },
-
-    iconStyle :{
+    iconStyle:{
         marginRight:5,
         width:20,
         height:20,

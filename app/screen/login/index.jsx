@@ -1,3 +1,4 @@
+
 import { 
   View,
   Text,
@@ -8,12 +9,13 @@ import {
   Dimensions,
   Image,
   ScrollView,
-  Alert
+  Alert,
+  TouchableOpacity
 } from 'react-native';  
-import { MyButton } from '../../components' 
+import { MyButton, FbButton } from '../../components' 
 import { ICFacebook, ICGoogle } from '../../../assets'       
 import React from 'react'
-
+import ApiLib from "../../lib/ApiLib"
 
 const windowWidth = Dimensions.get('window').width;
 
@@ -21,7 +23,7 @@ export default function LoginScreen({navigation}){
   const [email, onChangeEmail] = React.useState('')
   const [pasword, onChangePassword] = React.useState('')
 
-  const onSubmitLogin =()=>{
+  const onSubmitLogin =async ()=>{
     try{
       if(email.trim().length === 0 ){
         throw Error('Email is required')
@@ -31,7 +33,28 @@ export default function LoginScreen({navigation}){
         throw Error('Password is required')
       }
 
-      navigation.navigate('Home')
+      const res =  await ApiLib.post('/action/findOne',{
+              "dataSource": "Cluster0",
+              "database": "app-lp3i-mobile",
+              "collection": "users",
+              "filter": {
+                "email": email,
+                "password": pasword
+              }
+          }
+      )
+
+      if(res.data.document != null){
+        navigation.replace("Home")
+      }else{
+        Alert.alert('Error', "Username & password tidak sesuai", [
+          {text: 'OK', onPress: () => {
+            console.log('ERR')
+          }},
+        ]);
+      }
+      
+
     }catch(err){
       Alert.alert('Error', err.message, [
         {text: 'OK', onPress: () => {
@@ -39,7 +62,11 @@ export default function LoginScreen({navigation}){
         }},
       ]);
     }
+  }
 
+
+  const onRegister=()=>{
+    navigation.navigate("RegisterName")
   }
 
   return (
@@ -77,9 +104,8 @@ export default function LoginScreen({navigation}){
             placeholderTextColor='#c7c7c7'
             value={pasword}/>
 
-          <Button
+          <FbButton
             onPress={onSubmitLogin}
-            color='#000113'
             title="Login"/>
 
             
@@ -102,7 +128,9 @@ export default function LoginScreen({navigation}){
 
         <View style={style.containerBottom}>
           <Text>Don't have account? </Text>
-          <Text style={{fontWeight:'bold'}}>Create now</Text>
+          <TouchableOpacity onPress={onRegister}>
+            <Text style={{fontWeight:'bold'}}>Create now</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ScrollView>
