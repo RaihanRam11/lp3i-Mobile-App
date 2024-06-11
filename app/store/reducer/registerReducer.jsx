@@ -1,3 +1,4 @@
+
 import { createSlice } from '@reduxjs/toolkit'
 
 export const registerSlice = createSlice({
@@ -35,8 +36,8 @@ export const registerSlice = createSlice({
     setBirthDate:(state, action) => {
         state.formInput.birthDate = action.payload
     },
-    resetRegisterData:(state)=>{
-        state.formInput ={
+    resetRegisterData:(state) =>{
+        state.formInput = {
             firstName: null,
             sureName: null,
             gender: null,
