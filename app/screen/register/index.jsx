@@ -1,4 +1,3 @@
-
 import RegisterInputNameScreen  from "./input-name"
 import RegisterInputDateScreen  from "./input-date"
 import RegisterInputEmailScreen  from "./input-email"
