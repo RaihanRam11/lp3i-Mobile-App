@@ -46,5 +46,15 @@
     "react-test-renderer": "18.2.0",
     "typescript": "~5.3.3"
   },
-  "private": true
+  "private": true,
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "142603ea-3372-494e-8f06-3a5047d5ce44"
+      }
+    },
+    "android": {
+      "package": "com.raihan_ramdhani.lp3imobileapp"
+    }
+  }
 }
